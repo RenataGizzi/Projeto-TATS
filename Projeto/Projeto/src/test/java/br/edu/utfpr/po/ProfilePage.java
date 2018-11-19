@@ -23,6 +23,9 @@ public class ProfilePage {
 
     @FindBy(xpath = "//*[@id=\"profile-form\"]/div[6]/div/button")
     WebElement atualizarButton;
+    
+    @FindBy(xpath = "/html/body/div/div/div/div/p")
+    WebElement msgSucesso;
 
     public ProfilePage(WebDriver driver) {
         super(driver);
@@ -56,6 +59,9 @@ public class ProfilePage {
 
     public void atualizar() {
         atualizarButton.click();
+    }
+        public String getMsgSucesso() {
+        return msgSucesso.getAttribute("value");
     }
 
 }

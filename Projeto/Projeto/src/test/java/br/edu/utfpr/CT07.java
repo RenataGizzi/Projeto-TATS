@@ -47,9 +47,10 @@ public class CT07 {
 
     @Test
     public void loginTest() {
-        LoginPage loginPage = new LoginPage(driver);
-        loginPage.setUsuario("joe").setSenha("12345").gravar();
-        assertEquals("http://192.168.0.101/web/", driver.getCurrentUrl());
+        MenuPage menuPage = new MenuPage(driver);
+        ProfilePage profilePage = new profilePage(driver);
+        menuPage.meuPerfilClicar();
+        profilePage.setNomeCompleto("Joe Mac OS").currency("Brazil Real").decimalSeparator(",").atualizar();
+        assertEquals("Profile updated", profilePage.getMsgSucesso());
     }
-
 }

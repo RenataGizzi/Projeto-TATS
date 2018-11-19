@@ -1,4 +1,3 @@
-
 package br.edu.utfpr.po;
 
 import org.openqa.selenium.WebDriver;
@@ -6,7 +5,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 public class MyAccountPage {
-    
+
     @FindBy(id = "user-currentpassword")
     WebElement senhaAtual;
 
@@ -18,27 +17,29 @@ public class MyAccountPage {
 
     @FindBy(id = "user-email")
     WebElement email;
-    
-    @FindBy ( id="user-username")
+
+    @FindBy(id = "user-username")
     WebElement usuario;
-    
-    public MyAccountPage (WebDriver driver) {
+
+    @FindBy(xpath = "/html/body/div/div/div/div[1]/p")
+    WebElement msgSucesso;
+
+    public MyAccountPage(WebDriver driver) {
         super(driver);
-    }    
+    }
 
     public MyAccountPage setSenhaAtual(String senhaAtual) {
         senhaAtual.clear();
         senhaAtual.sendKeys(senhaAtual);
         return this;
     }
-        
+
     public MyAccountPage setUsuario(String usuario) {
         usuario.clear();
         usuario.sendKeys(usuario);
         return this;
     }
-    
-    
+
     public MyAccountPage setNovaSenha(String novaSenha) {
         novaSenha.clear();
         novaSenha.sendKeys(novaSenha);
@@ -50,7 +51,7 @@ public class MyAccountPage {
         email.sendKeys(email);
         return this;
     }
-    
+
     public void atualizar() {
         atualizarButton.click();
     }
@@ -58,7 +59,7 @@ public class MyAccountPage {
     public String getEmail() {
         return email.getAttribute("value");
     }
-    
+
     public String getUsuario() {
         return usuario.getAttribute("value");
     }
@@ -66,8 +67,12 @@ public class MyAccountPage {
     public String getSenhaAtual() {
         return senhaAtual.getAttribute("value");
     }
-    
-        public String getNovaSenha() {
+
+    public String getNovaSenha() {
         return novaSenha.getAttribute("value");
+    }
+
+    public String getMsgSucesso() {
+        return msgSucesso.getAttribute("value");
     }
 }

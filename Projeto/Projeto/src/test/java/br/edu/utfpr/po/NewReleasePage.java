@@ -16,13 +16,16 @@ public class NewReleasePage {
     WebElement valor;
 
     @FindBy(xpath = "//*[@id=\"cashbook-category_id\"]")
-    WebElement selectCategoria;
+    WebElement categoria;
 
     @FindBy(xpath = "//*[@id=\"cashbook-description\"]")
     WebElement descricao;
 
     @FindBy(xpath "//*[@id=\"cashbookform\"]/div[2]/div/button")
     WebElement gravarButton;
+    
+    @FindBy(xpath "/html/body/div/div/div/div[2]/div/div[1]/p")
+    WebElement msgSucesso;
 
     public NewReleasePage(WebDriver driver) {
         super(driver);
@@ -51,6 +54,11 @@ public class NewReleasePage {
     public void radioDespesas() {
         radioDespesas.click();
     }
+    
+    public void categoria() {
+        categoria.click();
+    }
+    
 
     public String getValor() {
         return valor.getAttribute("value");
@@ -59,5 +67,7 @@ public class NewReleasePage {
     public String getDescricao() {
         return descricao.getAttribute("value");
     }
-
+    public String getmsgSucesso() {
+        return msgSucesso.getAttribute("value");
+    }
 }

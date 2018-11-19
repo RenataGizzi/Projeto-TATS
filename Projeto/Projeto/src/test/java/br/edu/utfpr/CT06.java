@@ -47,9 +47,10 @@ public class CT06 {
 
     @Test
     public void loginTest() {
-        LoginPage loginPage = new LoginPage(driver);
-        loginPage.setUsuario("joe").setSenha("12345").gravar();
-        assertEquals("http://192.168.0.101/web/", driver.getCurrentUrl());
+        MenuPage menuPage = new MenuPage(driver);
+        MyAccountPage myAccount = new MyAccountPage(driver);
+        menuPage.minhaContaClicar();
+        myAccount.setSenhaAtual("123456").setNovaSenha("1234567").atualizar();
+        assertEquals("Conta atualizada", newReleasePage.getMsgSucesso());
     }
-
 }

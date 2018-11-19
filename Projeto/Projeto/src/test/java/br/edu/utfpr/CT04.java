@@ -47,9 +47,12 @@ public class CT04 {
 
     @Test
     public void loginTest() {
-        LoginPage loginPage = new LoginPage(driver);
-        loginPage.setUsuario("joe").setSenha("12345").gravar();
-        assertEquals("http://192.168.0.101/web/", driver.getCurrentUrl());
+        ReleasePage releasePage = new ReleasePagePage(driver);
+        NewReleasePage newreleasePage = new NewReleasePagePage(driver);
+        releasePage.novo();
+        newreleasePage.radioreceita().setValor("800,00").setCategoria("Salario").setDescricao("Salario").gravar();
+        
+        assertEquals("Lançamento incluído com sucesso", newReleasePage.getmsgSucesso());
     }
 
 }
