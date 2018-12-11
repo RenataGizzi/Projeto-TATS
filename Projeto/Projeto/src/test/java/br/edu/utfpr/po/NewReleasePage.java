@@ -4,7 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class NewReleasePage {
+public class NewReleasePage extends BasePage {
 
     @FindBy(xpath = "//*[@id=\"cashbook-type_id\"]/label[1]/input")
     WebElement radioReceita;
@@ -21,10 +21,10 @@ public class NewReleasePage {
     @FindBy(xpath = "//*[@id=\"cashbook-description\"]")
     WebElement descricao;
 
-    @FindBy(xpath "//*[@id=\"cashbookform\"]/div[2]/div/button")
+    @FindBy(xpath = "//*[@id=\"cashbookform\"]/div[2]/div/button")
     WebElement gravarButton;
     
-    @FindBy(xpath "/html/body/div/div/div/div[2]/div/div[1]/p")
+    @FindBy(xpath = "/html/body/div/div/div/div[2]/div/div[1]/p")
     WebElement msgSucesso;
 
     public NewReleasePage(WebDriver driver) {
@@ -32,31 +32,35 @@ public class NewReleasePage {
     }
 
     public NewReleasePage setValor(String valor) {
-        valor.clear();
-        valor.sendKeys(valor);
+        this.valor.clear();
+        this.valor.sendKeys(valor);
         return this;
     }
 
     public NewReleasePage setDescricao(String descricao) {
-        descricao.clear();
-        descricao.sendKeys(descricao);
+        this.descricao.clear();
+        this.descricao.sendKeys(descricao);
         return this;
     }
 
-    public void gravar() {
+    public NewReleasePage gravar() {
         gravarButton.click();
+        return this;
     }
 
-    public void radioReceita() {
+    public NewReleasePage radioReceita() {
         radioReceita.click();
+        return this;
     }
 
-    public void radioDespesas() {
+    public NewReleasePage radioDespesas() {
         radioDespesas.click();
+        return this;
     }
     
-    public void categoria() {
+    public NewReleasePage categoriaClicar() {
         categoria.click();
+        return this;
     }
     
 

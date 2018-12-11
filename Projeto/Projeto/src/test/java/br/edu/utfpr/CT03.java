@@ -1,15 +1,9 @@
 package br.edu.utfpr;
 
-import br.edu.utfpr.po.LoginPage;
-import br.edu.utfpr.po.HomePage;
-import br.edu.utfpr.po.BasePage;
 import br.edu.utfpr.po.CategoryPage;
+import br.edu.utfpr.po.HomePage;
+import br.edu.utfpr.po.LoginPage;
 import br.edu.utfpr.po.MenuPage;
-import br.edu.utfpr.po.MyAccountPage;
-import br.edu.utfpr.po.NewReleasePage;
-import br.edu.utfpr.po.OverviewPage;
-import br.edu.utfpr.po.ProfilePage;
-import br.edu.utfpr.po.ReleasesPage;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import java.util.concurrent.TimeUnit;
 import org.junit.After;
@@ -21,7 +15,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
-public class CT02 {
+public class CT03 {
 
     private WebDriver driver;
 
@@ -47,13 +41,22 @@ public class CT02 {
 
     @Test
     public void criarCategoriaFilhaTest() {
-        ReleasesPage releasesPage = new ReleasePage(driver);
-        CategoryPage categorypage = new CategoryPage(driver);
-        
-        realeasesPage.opcoesClicar();
+        HomePage homePage = new HomePage(driver);
+        LoginPage loginPage = new LoginPage(driver);
+        loginPage.setUsuario("joe");
+        loginPage.setSenha("12345");
+        MenuPage menuPage = loginPage.logarToMenu();
+        menuPage.opcoesClicar();
+        CategoryPage categoryPage = menuPage.categoriaClicar();
         categoryPage.novoClicar();
-        categoryPage.setDescricao("Salário Liquido").setCor("#000000").categoriaPai("Salario").ativoSim().gravar();
-        assertEquals("Categoria incluída com sucesso", categoryPage.getmsgSucesso());
+        categoryPage.setDescricao("Salário Líquido");
+        categoryPage.corClicar();
+        categoryPage.corPretaClicar();
+        categoryPage.categoriaPai();
+        categoryPage.clicarSalario();
+        categoryPage.ativoSim();
+        categoryPage.gravarClicar();
+        assertEquals("Categoria incluída com sucesso", categoryPage.getMsgSucesso());
     }
 
 }

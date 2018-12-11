@@ -4,7 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class MyAccountPage {
+public class MyAccountPage extends BasePage{
 
     @FindBy(id = "user-currentpassword")
     WebElement senhaAtual;
@@ -29,26 +29,26 @@ public class MyAccountPage {
     }
 
     public MyAccountPage setSenhaAtual(String senhaAtual) {
-        senhaAtual.clear();
-        senhaAtual.sendKeys(senhaAtual);
+        this.senhaAtual.clear();
+        this.senhaAtual.sendKeys(senhaAtual);
         return this;
     }
 
     public MyAccountPage setUsuario(String usuario) {
-        usuario.clear();
-        usuario.sendKeys(usuario);
+        this.usuario.clear();
+        this.usuario.sendKeys(usuario);
         return this;
     }
 
     public MyAccountPage setNovaSenha(String novaSenha) {
-        novaSenha.clear();
-        novaSenha.sendKeys(novaSenha);
+        this.novaSenha.clear();
+        this.novaSenha.sendKeys(novaSenha);
         return this;
     }
 
     public MyAccountPage setEmail(String email) {
-        email.clear();
-        email.sendKeys(email);
+        this.email.clear();
+        this.email.sendKeys(email);
         return this;
     }
 

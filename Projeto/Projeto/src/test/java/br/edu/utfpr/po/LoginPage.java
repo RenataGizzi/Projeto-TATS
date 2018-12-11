@@ -1,6 +1,5 @@
 package br.edu.utfpr.po;
 
-import java.util.List;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -27,19 +26,25 @@ public class LoginPage extends BasePage {
     }
 
     public LoginPage setUsuario(String usuario) {
-        usuario.clear();
-        usuario.sendKeys(usuario);
+        this.usuario.clear();
+        this.usuario.sendKeys(usuario);
         return this;
     }
 
     public LoginPage setSenha(String senha) {
-        senha.clear();
-        senha.sendKeys(senha);
+        this.senha.clear();
+        this.senha.sendKeys(senha);
         return this;
     }
 
-    public void logar() {
+    public MenuPage logarToMenu() {
         loginButton.click();
+        return new MenuPage(driver);
+    }
+    
+    public ReleasesPage logarToRelease() {
+        loginButton.click();
+        return new ReleasesPage(driver);
     }
 
     public String getUsuario() {

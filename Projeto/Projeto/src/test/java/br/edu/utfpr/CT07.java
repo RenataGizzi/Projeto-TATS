@@ -1,15 +1,9 @@
 package br.edu.utfpr;
 
-import br.edu.utfpr.po.LoginPage;
 import br.edu.utfpr.po.HomePage;
-import br.edu.utfpr.po.BasePage;
-import br.edu.utfpr.po.CategoryPage;
+import br.edu.utfpr.po.LoginPage;
 import br.edu.utfpr.po.MenuPage;
-import br.edu.utfpr.po.MyAccountPage;
-import br.edu.utfpr.po.NewReleasePage;
-import br.edu.utfpr.po.OverviewPage;
 import br.edu.utfpr.po.ProfilePage;
-import br.edu.utfpr.po.ReleasesPage;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import java.util.concurrent.TimeUnit;
 import org.junit.After;
@@ -46,11 +40,20 @@ public class CT07 {
     }
 
     @Test
-    public void loginTest() {
-        MenuPage menuPage = new MenuPage(driver);
-        ProfilePage profilePage = new profilePage(driver);
-        menuPage.meuPerfilClicar();
-        profilePage.setNomeCompleto("Joe Mac OS").currency("Brazil Real").decimalSeparator(",").atualizar();
+    public void alterarNomeTest() {
+        //estar logado fazer
+        HomePage homePage = new HomePage(driver);
+        LoginPage loginPage = new LoginPage(driver);
+        loginPage.setUsuario("joe");
+        loginPage.setSenha("12345");
+        MenuPage menuPage = loginPage.logarToMenu();
+        menuPage.menuUsuarioClicar();
+        ProfilePage profilePage = menuPage.meuPerfilClicar();
+        profilePage.setNomeCompleto("Joe Mac OS");
+        profilePage.currency();
+        profilePage.brazilReal();
+        profilePage.decimalSeparator();
+        profilePage.virgula();
         assertEquals("Profile updated", profilePage.getMsgSucesso());
     }
 }

@@ -1,15 +1,10 @@
 package br.edu.utfpr;
 
-import br.edu.utfpr.po.LoginPage;
 import br.edu.utfpr.po.HomePage;
-import br.edu.utfpr.po.BasePage;
-import br.edu.utfpr.po.CategoryPage;
+import br.edu.utfpr.po.LoginPage;
 import br.edu.utfpr.po.MenuPage;
 import br.edu.utfpr.po.MyAccountPage;
-import br.edu.utfpr.po.NewReleasePage;
-import br.edu.utfpr.po.OverviewPage;
 import br.edu.utfpr.po.ProfilePage;
-import br.edu.utfpr.po.ReleasesPage;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import java.util.concurrent.TimeUnit;
 import org.junit.After;
@@ -46,11 +41,18 @@ public class CT06 {
     }
 
     @Test
-    public void loginTest() {
-        MenuPage menuPage = new MenuPage(driver);
-        MyAccountPage myAccount = new MyAccountPage(driver);
-        menuPage.minhaContaClicar();
-        myAccount.setSenhaAtual("123456").setNovaSenha("1234567").atualizar();
-        assertEquals("Conta atualizada", newReleasePage.getMsgSucesso());
+    public void alterarSenhaTest() {
+        //TERMINAR
+        HomePage homePage = new HomePage(driver);
+        LoginPage loginPage = new LoginPage(driver);
+        loginPage.setUsuario("joe");
+        loginPage.setSenha("12345");
+        MenuPage menuPage = loginPage.logarToMenu();
+        menuPage.menuUsuarioClicar();
+        MyAccountPage myAccountPage = menuPage.minhaContaClicar();
+        myAccountPage.setSenhaAtual("12345");
+        myAccountPage.setNovaSenha("123456");
+        myAccountPage.atualizar();
+        assertEquals("Conta atualizada", myAccountPage.getMsgSucesso());
     }
 }

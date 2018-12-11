@@ -1,5 +1,6 @@
 package br.edu.utfpr;
 
+import br.edu.utfpr.po.CategoryPage;
 import br.edu.utfpr.po.HomePage;
 import br.edu.utfpr.po.LoginPage;
 import br.edu.utfpr.po.MenuPage;
@@ -14,7 +15,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
-public class CT01 {
+public class CT09 {
 
     private WebDriver driver;
 
@@ -39,13 +40,16 @@ public class CT01 {
     }
 
     @Test
-    public void loginTest() {
+    public void excluirCatFilhaTest() {
         HomePage homePage = new HomePage(driver);
         LoginPage loginPage = new LoginPage(driver);
         loginPage.setUsuario("joe");
         loginPage.setSenha("12345");
         MenuPage menuPage = loginPage.logarToMenu();
-        assertEquals("http://192.168.0.103/web/user/login", driver.getCurrentUrl());//tem que mudar
+        menuPage.opcoesClicar();
+        CategoryPage categoryPage = menuPage.categoriaClicar();
+        //incompleto porque não dá pra criar lançamento
+        //assertEquals("http://192.168.0.101/web/", driver.getCurrentUrl());
     }
 
 }

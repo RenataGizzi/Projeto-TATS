@@ -1,8 +1,6 @@
 package br.edu.utfpr;
 
-import br.edu.utfpr.po.HomePage;
 import br.edu.utfpr.po.LoginPage;
-import br.edu.utfpr.po.MenuPage;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import java.util.concurrent.TimeUnit;
 import org.junit.After;
@@ -14,7 +12,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
-public class CT01 {
+public class CT10 {
 
     private WebDriver driver;
 
@@ -39,13 +37,10 @@ public class CT01 {
     }
 
     @Test
-    public void loginTest() {
-        HomePage homePage = new HomePage(driver);
+    public void transformarCatTest() {
         LoginPage loginPage = new LoginPage(driver);
-        loginPage.setUsuario("joe");
-        loginPage.setSenha("12345");
-        MenuPage menuPage = loginPage.logarToMenu();
-        assertEquals("http://192.168.0.103/web/user/login", driver.getCurrentUrl());//tem que mudar
+        loginPage.setUsuario("joe").setSenha("12345").logarToMenu();
+        assertEquals("http://192.168.0.101/web/", driver.getCurrentUrl());
     }
 
 }

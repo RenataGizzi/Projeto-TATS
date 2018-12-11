@@ -4,7 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class ProfilePage {
+public class ProfilePage extends BasePage {
 
     @FindBy(id = "profile-full_name")
     WebElement nomeCompleto;
@@ -23,17 +23,24 @@ public class ProfilePage {
 
     @FindBy(xpath = "//*[@id=\"profile-form\"]/div[6]/div/button")
     WebElement atualizarButton;
-    
+
     @FindBy(xpath = "/html/body/div/div/div/div/p")
     WebElement msgSucesso;
+
+    @FindBy(xpath = "//*[@id=\"profile-currencycode\"]")
+    WebElement brazilReal;
+    
+    @FindBy(xpath = "//*[@id=\"profile-decimalseparator\"]")
+    WebElement virgula;
+    
 
     public ProfilePage(WebDriver driver) {
         super(driver);
     }
 
     public ProfilePage setNomeCompleto(String nomeCompleto) {
-        nomeCompleto.clear();
-        nomeCompleto.sendKeys(nomeCompleto);
+        this.nomeCompleto.clear();
+        this.nomeCompleto.sendKeys(nomeCompleto);
         return this;
     }
 
@@ -41,26 +48,39 @@ public class ProfilePage {
         return nomeCompleto.getAttribute("value");
     }
 
-    public void idioma() {
+    public ProfilePage idioma() {
         idioma.click();
+        return this;
     }
 
-    public void currency() {
+    public ProfilePage currency() {
         currency.click();
+        return this;
     }
 
-    public void decimalSeparator() {
+    public ProfilePage decimalSeparator() {
         decimalSeparator.click();
+        return this;
     }
 
     public void paginaInicial() {
         paginaInicial.click();
     }
 
-    public void atualizar() {
+    public ProfilePage atualizar() {
         atualizarButton.click();
+        return this;
     }
-        public String getMsgSucesso() {
+
+    public ProfilePage brazilReal() {
+        brazilReal.click();
+        return this;
+    }
+    public ProfilePage virgula() {
+        virgula.click();
+        return this;
+    }
+    public String getMsgSucesso() {
         return msgSucesso.getAttribute("value");
     }
 

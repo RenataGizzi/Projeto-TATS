@@ -5,7 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class MenuPage {
+public class MenuPage extends BasePage {
 
     @FindBy(xpath = "//*[@id=\"w7\"]/li[1]/a")
     WebElement visaoGeral;
@@ -16,8 +16,8 @@ public class MenuPage {
     @FindBy(xpath = "//*[@id=\"w7\"]/li[4]/a")
     WebElement opcoes;
     
-    @FindyBy(xpath = "//*[@id=\"w3\"]/li/a");
-    WeElement categorias;
+    @FindBy(xpath = "//*[@id=\"w2\"]/li/a")
+    WebElement categorias;
 
     @FindBy(xpath = "//*[@id=\"w7\"]/li[5]/a")
     WebElement menuUsuario;
@@ -35,36 +35,43 @@ public class MenuPage {
         super(driver);
     }
 
-    public void visaoGeralClicar() {
+    public MenuPage visaoGeralClicar() {
         visaoGeral.click();
+        return this;
     }
 
     public void metasClicar() {
         metas.click();
     }
     
-    public void minhaContaClicar() {
+    public MyAccountPage minhaContaClicar() {
         minhaConta.click();
+        return new MyAccountPage(driver);
     }
     
-    public void meuPerfilClicar() {
+    public ProfilePage meuPerfilClicar() {
         meuPerfil.click();
+        return new ProfilePage(driver);
     }
     
-    public void sairClicar() {
+    public HomePage sairClicar() {
         sair.click();
+        return new HomePage(driver);
     }
 
-    public void opcoesClicar() {
+    public MenuPage opcoesClicar() {
         opcoes.click();
+        return this;
     }
     
-    public void categoriaClicar() {
-        categoria.click();
+    public CategoryPage categoriaClicar() {
+        categorias.click();
+        return new CategoryPage(driver);
     }
 
-    public void menuUsuarioClicar() {
+    public MenuPage menuUsuarioClicar() {
         menuUsuario.click();
+        return this;
     }
 
 }

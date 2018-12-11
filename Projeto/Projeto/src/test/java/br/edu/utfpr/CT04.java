@@ -1,14 +1,8 @@
 package br.edu.utfpr;
 
-import br.edu.utfpr.po.LoginPage;
 import br.edu.utfpr.po.HomePage;
-import br.edu.utfpr.po.BasePage;
-import br.edu.utfpr.po.CategoryPage;
-import br.edu.utfpr.po.MenuPage;
-import br.edu.utfpr.po.MyAccountPage;
+import br.edu.utfpr.po.LoginPage;
 import br.edu.utfpr.po.NewReleasePage;
-import br.edu.utfpr.po.OverviewPage;
-import br.edu.utfpr.po.ProfilePage;
 import br.edu.utfpr.po.ReleasesPage;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import java.util.concurrent.TimeUnit;
@@ -46,11 +40,19 @@ public class CT04 {
     }
 
     @Test
-    public void loginTest() {
-        ReleasePage releasePage = new ReleasePagePage(driver);
-        NewReleasePage newreleasePage = new NewReleasePagePage(driver);
-        releasePage.novo();
-        newreleasePage.radioreceita().setValor("800,00").setCategoria("Salario").setDescricao("Salario").gravar();
+    public void cadastrarLançamentoTest() {
+        HomePage homePage = new HomePage(driver);
+        LoginPage loginPage = new LoginPage(driver);
+        loginPage.setUsuario("joe");
+        loginPage.setSenha("12345");
+        ReleasesPage releasesPage = loginPage.logarToRelease();        
+        NewReleasePage newReleasePage = releasesPage.novoClicar();
+        newReleasePage.radioReceita();
+        newReleasePage.setValor("800,00");
+        newReleasePage.categoriaClicar();
+        //newReleasesPage.salarioClicar(); //não clica e não inspeciona
+        newReleasePage.setDescricao("Salario");
+        newReleasePage.gravar();
         
         assertEquals("Lançamento incluído com sucesso", newReleasePage.getmsgSucesso());
     }
