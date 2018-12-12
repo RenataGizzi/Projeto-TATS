@@ -16,19 +16,19 @@ public class MenuPage extends BasePage {
     @FindBy(xpath = "//*[@id=\"w7\"]/li[4]/a")
     WebElement opcoes;
     
-    @FindBy(xpath = "//*[@id=\"w2\"]/li/a")
+    @FindBy(xpath = "//*[@id=\"w8\"]/li/a/span")
     WebElement categorias;
 
     @FindBy(xpath = "//*[@id=\"w7\"]/li[5]/a")
     WebElement menuUsuario;
     
-    @FindBy(xpath = "//*[@id=\"w3\"]/li[1]/a")
+    @FindBy(xpath = "//*[@id=\"w4\"]/li[1]/a/span")
     WebElement minhaConta;
     
-    @FindBy(xpath = "//*[@id=\"w3\"]/li[2]/a")
+    @FindBy(xpath = "//*[@id=\"w4\"]/li[2]/a/span")
     WebElement meuPerfil;
     
-    @FindBy(xpath = "//*[@id=\"w3\"]/li[4]/a/i")
+    @FindBy(xpath = "//*[@id=\"w4\"]/li[4]/a/i")
     WebElement sair;
 
     public MenuPage(WebDriver driver) {

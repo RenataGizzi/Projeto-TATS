@@ -12,11 +12,14 @@ public class NewReleasePage extends BasePage {
     @FindBy(xpath = "//*[@id=\"cashbook-type_id\"]/label[2]/input")
     WebElement radioDespesas;
 
-    @FindBy(id = "id=\"cashbook-value-disp\"")
+    @FindBy(xpath = "//*[@id=\"cashbook-value-disp\"]")
     WebElement valor;
 
     @FindBy(xpath = "//*[@id=\"cashbook-category_id\"]")
     WebElement categoria;
+    
+    @FindBy(xpath = "//*[@id=\"cashbook-category_id\"]/optgroup[2]")
+    WebElement salario;
 
     @FindBy(xpath = "//*[@id=\"cashbook-description\"]")
     WebElement descricao;
@@ -60,6 +63,11 @@ public class NewReleasePage extends BasePage {
     
     public NewReleasePage categoriaClicar() {
         categoria.click();
+        return this;
+    }
+    
+    public NewReleasePage salarioClicar() {
+        this.salario.click();
         return this;
     }
     

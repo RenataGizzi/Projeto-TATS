@@ -17,8 +17,11 @@ public class CategoryPage extends BasePage {
 
     @FindBy(xpath = "/html/body/div[2]/div[1]/div[1]/div[1]/span[1]/span")
     WebElement corPreta;
+    
+    @FindBy(xpath = "/html/body/div[2]/div[2]/div[4]/button")
+    WebElement escolher;
 
-    @FindBy(id = "category-parent_id")
+    @FindBy(xpath = "//*[@id=\"category-parent_id\"]")
     WebElement categoriaPai;
 
     @FindBy(xpath = "//*[@id=\"category-parent_id\"]/option[1]")
@@ -62,6 +65,11 @@ public class CategoryPage extends BasePage {
 
     public CategoryPage corPretaClicar() {
         this.corPreta.click();
+        return this;
+    }
+    
+    public CategoryPage clicarEscolher(){
+        this.escolher.click();
         return this;
     }
 
@@ -115,7 +123,7 @@ public class CategoryPage extends BasePage {
     }
 
     public String getMsgSucesso() {
-        return msgSucesso.getAttribute("value");
+        return msgSucesso.getText();
     }
 
 }

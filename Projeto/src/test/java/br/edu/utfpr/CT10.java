@@ -1,5 +1,6 @@
 package br.edu.utfpr;
 
+import br.edu.utfpr.po.HomePage;
 import br.edu.utfpr.po.LoginPage;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import java.util.concurrent.TimeUnit;
@@ -38,9 +39,10 @@ public class CT10 {
 
     @Test
     public void transformarCatTest() {
+        HomePage homePage = new HomePage(driver);
         LoginPage loginPage = new LoginPage(driver);
         loginPage.setUsuario("joe").setSenha("12345").logarToMenu();
-        assertEquals("http://192.168.0.101/web/", driver.getCurrentUrl());
+        assertEquals("http://192.168.0.103/web/user/login", driver.getCurrentUrl());
     }
 
 }

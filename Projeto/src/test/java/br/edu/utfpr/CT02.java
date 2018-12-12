@@ -6,6 +6,8 @@ import br.edu.utfpr.po.LoginPage;
 import br.edu.utfpr.po.MenuPage;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import java.util.concurrent.TimeUnit;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -15,7 +17,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
-public class CT03 {
+public class CT02 {
 
     private WebDriver driver;
 
@@ -40,7 +42,7 @@ public class CT03 {
     }
 
     @Test
-    public void criarCategoriaFilhaTest() {
+    public void criarCategoriaPaiTest() {
         HomePage homePage = new HomePage(driver);
         LoginPage loginPage = new LoginPage(driver);
         loginPage.setUsuario("joe");
@@ -49,11 +51,12 @@ public class CT03 {
         menuPage.opcoesClicar();
         CategoryPage categoryPage = menuPage.categoriaClicar();
         categoryPage.novoClicar();
-        categoryPage.setDescricao("Salário Líquido");
+        categoryPage.setDescricao("Salário");
         categoryPage.corClicar();
         categoryPage.corPretaClicar();
+        categoryPage.clicarEscolher();
         categoryPage.categoriaPai();
-        categoryPage.clicarSalario();
+        categoryPage.clicarNenhum();
         categoryPage.ativoSim();
         categoryPage.gravarClicar();
         assertEquals("Categoria incluída com sucesso", categoryPage.getMsgSucesso());

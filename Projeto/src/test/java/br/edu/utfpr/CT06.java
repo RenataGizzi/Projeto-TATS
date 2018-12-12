@@ -2,10 +2,12 @@ package br.edu.utfpr;
 
 import br.edu.utfpr.po.HomePage;
 import br.edu.utfpr.po.LoginPage;
-import br.edu.utfpr.po.NewReleasePage;
-import br.edu.utfpr.po.ReleasesPage;
+import br.edu.utfpr.po.MenuPage;
+import br.edu.utfpr.po.MyAccountPage;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import java.util.concurrent.TimeUnit;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -15,7 +17,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
-public class CT04 {
+public class CT06 {
 
     private WebDriver driver;
 
@@ -40,21 +42,17 @@ public class CT04 {
     }
 
     @Test
-    public void cadastrarLançamentoTest() {
+    public void alterarSenhaTest() {
         HomePage homePage = new HomePage(driver);
         LoginPage loginPage = new LoginPage(driver);
         loginPage.setUsuario("joe");
         loginPage.setSenha("12345");
-        ReleasesPage releasesPage = loginPage.logarToRelease();        
-        NewReleasePage newReleasePage = releasesPage.novoClicar();
-        newReleasePage.radioReceita();
-        newReleasePage.setValor("800,00");
-        newReleasePage.categoriaClicar();
-        //newReleasesPage.salarioClicar(); //não clica e não inspeciona
-        newReleasePage.setDescricao("Salario");
-        newReleasePage.gravar();
-        
-        assertEquals("Lançamento incluído com sucesso", newReleasePage.getmsgSucesso());
+        MenuPage menuPage = loginPage.logarToMenu();
+        menuPage.menuUsuarioClicar();
+        MyAccountPage myAccountPage = menuPage.minhaContaClicar();
+        myAccountPage.setSenhaAtual("12345");
+        myAccountPage.setNovaSenha("123456");
+        myAccountPage.atualizar();
+        assertEquals("Conta atualizada", myAccountPage.getMsgSucesso());
     }
-
 }

@@ -1,22 +1,20 @@
 package br.edu.utfpr;
 
+import br.edu.utfpr.po.CategoryPage;
 import br.edu.utfpr.po.HomePage;
 import br.edu.utfpr.po.LoginPage;
 import br.edu.utfpr.po.MenuPage;
-import br.edu.utfpr.po.MyAccountPage;
-import br.edu.utfpr.po.ProfilePage;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import java.util.concurrent.TimeUnit;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import static org.junit.Assert.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
-public class CT06 {
+public class CT05 {
 
     private WebDriver driver;
 
@@ -41,18 +39,16 @@ public class CT06 {
     }
 
     @Test
-    public void alterarSenhaTest() {
-        //TERMINAR
+    public void excluirCatPaiTest() {
         HomePage homePage = new HomePage(driver);
         LoginPage loginPage = new LoginPage(driver);
         loginPage.setUsuario("joe");
         loginPage.setSenha("12345");
         MenuPage menuPage = loginPage.logarToMenu();
-        menuPage.menuUsuarioClicar();
-        MyAccountPage myAccountPage = menuPage.minhaContaClicar();
-        myAccountPage.setSenhaAtual("12345");
-        myAccountPage.setNovaSenha("123456");
-        myAccountPage.atualizar();
-        assertEquals("Conta atualizada", myAccountPage.getMsgSucesso());
+        
+        menuPage.opcoesClicar();
+        CategoryPage categoryPage = menuPage.categoriaClicar();
+        categoryPage.salariodacategoriaClicar();
+        //incompleto
     }
 }
